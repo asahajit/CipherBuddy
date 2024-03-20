@@ -13,11 +13,11 @@ namespace CipherBuddy
         private void DecryptFile_Click(object sender, EventArgs e)
         {
 
-            string inputFileName = string.Empty;
-            string outputFileName = string.Empty;
+            string inputFileName = textBox3.Text;
+            string outputFileName = textBox4.Text;
 
-            string privateKeyFileName = string.Empty;
-            string passPhrase = string.Empty;
+            string privateKeyFileName = textBox2.Text;
+            string passPhrase = textBox5.Text;
 
             bool shouldArmor = false;
             bool shouldCheckIntegrity = false;
@@ -33,10 +33,14 @@ namespace CipherBuddy
 
         private void EncryptFile_Click_1(object sender, EventArgs e)
         {
-            string inputFileName = string.Empty;
-            string outputFileName = string.Empty;
 
-            string recipientKeyFileName = string.Empty;
+            string outputFileName = textBox4.Text+@"\output.pgp";
+
+            string Publickey = textBox1.Text;
+            string inputFileName = textBox3.Text;
+
+            string privateKeyFileName = textBox2.Text;
+            string passPhrase = textBox5.Text;
 
             bool shouldArmor = false;
             bool shouldCheckIntegrity = false;
@@ -45,7 +49,7 @@ namespace CipherBuddy
 
             PGPEncryptDecrypt.EncryptFile(inputFileName,
                               outputFileName,
-                              recipientKeyFileName,
+                              Publickey,
                               shouldArmor,
                               shouldCheckIntegrity);
         }
@@ -60,13 +64,13 @@ namespace CipherBuddy
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
                 InitialDirectory = @"C:\",
-                Title = "Browse Text Files",
+                Title = "Browse Public key File",
 
                 CheckFileExists = true,
                 CheckPathExists = true,
 
-                DefaultExt = "txt",
-                Filter = "txt files (*.txt)|*.txt",
+                DefaultExt = "asc",
+                Filter = "txt or asc files (*.asc)|*.acs",
                 FilterIndex = 2,
                 RestoreDirectory = true,
 
@@ -92,7 +96,7 @@ namespace CipherBuddy
                 CheckPathExists = true,
 
                 DefaultExt = "txt",
-                Filter = "txt files (*.txt)|*.txt",
+                Filter = "txt files (*.asc)|*.asc",
                 FilterIndex = 2,
                 RestoreDirectory = true,
 
